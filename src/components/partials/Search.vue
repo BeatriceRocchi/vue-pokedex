@@ -4,17 +4,17 @@ export default {
   data() {
     return {
       pokemonToSearch: "",
+      pokemonData: {},
       apiUrl: "https://pokeapi.co/api/v2/pokemon/",
     };
   },
   methods: {
     searchPokemon() {
-      console.log(this.pokemonToSearch);
       axios
         .get(this.apiUrl + this.pokemonToSearch)
         .then((result) => {
-          console.log(result.data.name);
-          console.log(result.data);
+          this.pokemonData = result.data;
+          this.$emit("sendPokemonDetails", this.pokemonData);
         })
         .catch((error) => {
           console.log(error);
@@ -25,8 +25,10 @@ export default {
 </script>
 
 <template>
-  <input type="text" v-model="pokemonToSearch" />
-  <button @click="searchPokemon">Find</button>
+  <div>
+    <input type="text" v-model="pokemonToSearch" />
+    <button @click="searchPokemon">Find</button>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
