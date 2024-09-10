@@ -5,6 +5,7 @@ export default {
     return {
       pokemonToSearch: "",
       pokemonData: {},
+      userPokemons: [],
       apiUrl: "https://pokeapi.co/api/v2/pokemon/",
     };
   },
@@ -20,15 +21,31 @@ export default {
           console.log(error);
         });
     },
+    catchPokemon() {
+      // To mantain the pokemon of a previous localStorage
+      if (localStorage.userPokemons) {
+        this.userPokemons = localStorage.userPokemons.split(",");
+      }
+      this.userPokemons.push(this.pokemonData.name);
+      localStorage.setItem("userPokemons", this.userPokemons);
+    },
   },
 };
 </script>
 
 <template>
-  <div>
-    <input type="text" v-model="pokemonToSearch" />
-    <button @click="searchPokemon">Find</button>
+  <div id="search-box">
+    <div>
+      <input type="text" v-model="pokemonToSearch" />
+      <button @click="searchPokemon">Find</button>
+    </div>
+    <button @click="catchPokemon">Catch</button>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#search-box {
+  display: flex;
+  justify-content: space-between;
+}
+</style>

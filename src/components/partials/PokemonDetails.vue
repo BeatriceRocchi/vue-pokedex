@@ -16,7 +16,8 @@ export default {
     />
   </div>
   <!-- Lower part: details -->
-  <ul>
+  <!-- TODO: Add stats and style -->
+  <ul v-if="pokemonData.name">
     <li>Name: {{ pokemonData.name }}</li>
     <li>Type: {{ pokemonData.types[0].type.name }}</li>
     <li>Height: {{ pokemonData.height }} ''</li>

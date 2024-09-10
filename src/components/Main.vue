@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       pokemonData: {},
+      userPokemons: [],
     };
   },
   components: {
@@ -15,8 +16,17 @@ export default {
   methods: {
     handlePokemonDetails(data) {
       this.pokemonData = data;
-      console.log(this.pokemonData);
     },
+  },
+  // computed: {
+  //   changeUserPokemons() {
+  //     return (this.userPokemons = localStorage.userPokemons);
+  //   },
+  // },
+  mounted() {
+    if (localStorage.userPokemons) {
+      this.userPokemons = localStorage.userPokemons.split(",");
+    }
   },
 };
 </script>
@@ -29,7 +39,14 @@ export default {
       <PokemonDetails :pokemonData="pokemonData" />
     </div>
     <!-- Right side: my pokemon list -->
-    <div>RIGHT</div>
+    <div>
+      <h3>My pokemons</h3>
+      <ul>
+        <li v-for="(pokemon, id) in userPokemons" :key="id">
+          {{ pokemon }}
+        </li>
+      </ul>
+    </div>
   </main>
 </template>
 
