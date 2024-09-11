@@ -18,7 +18,7 @@ Aggiungere la possibilità tramite un pulsante di salvare il Pokemon trovato nel
 
 **Milestone 4**
 
-Diamo la possibilità di cancellare dalla lista i Pokemon salvati e di poterne visualizzare il dettaglio nel componente dedicato cliccandoci sopra.
+Diamo la possibilità di cancellare dalla lista di Pokemon salvati e di poterne visualizzare il dettaglio nel componente dedicato cliccandoci sopra.
 
 **Milestone 5**
 
