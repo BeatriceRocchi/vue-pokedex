@@ -28,14 +28,20 @@ export default {
   <ul>
     <li class="stat-item" v-for="(statItem, id) in pokemonData.stats" :key="id">
       <p>{{ statItem.stat.name }}</p>
-      <div class="progress-bar" :style="{ width: statItem.base_stat + 'px' }">
-        {{ statItem.base_stat }}
+      <div class="progress-bar">
+        <div
+          class="progress-bar-full"
+          :style="{ width: statItem.base_stat + 'px' }"
+        >
+          {{ statItem.base_stat }}
+        </div>
       </div>
     </li>
   </ul>
 </template>
 
 <style lang="scss" scoped>
+@import "../../assets/scss/partials/variables";
 .img-box {
   background-color: white;
   width: 50%;
@@ -59,7 +65,12 @@ ul {
 
   .progress-bar {
     display: inline-block;
-    background-color: black;
+    border: 1px solid white;
+    width: 200px;
+
+    &-full {
+      background-color: $color-primary;
+    }
   }
 }
 </style>
