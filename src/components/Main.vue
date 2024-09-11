@@ -36,7 +36,7 @@ export default {
     <div>
       <Search
         @sendPokemonDetails="handlePokemonDetails"
-        @addPokemon="updateUserPokemons"
+        @updatePokemon="updateUserPokemons"
       />
       <PokemonDetails :pokemonData="pokemonData" />
     </div>

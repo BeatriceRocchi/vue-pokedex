@@ -21,17 +21,25 @@ export default {
           console.log(error);
         });
     },
-    catchPokemon() {
-      // To mantain the pokemon of a previous localStorage
+    catchPokemon(toCatch) {
+      // TODO: fix: if a pokemon is included in the userPokemons in the previous session, the button is catch and not free
+
+      // To mantain the pokemon of a previous session in the localStorage
       if (localStorage.userPokemons) {
         this.userPokemons = localStorage.userPokemons.split(",");
       }
 
-      this.userPokemons.push(this.pokemonData.name);
-      localStorage.setItem("userPokemons", this.userPokemons);
+      if (toCatch) {
+        this.userPokemons.push(this.pokemonData.name);
+        localStorage.setItem("userPokemons", this.userPokemons);
+      } else {
+        const idToDelete = this.userPokemons.indexOf(this.pokemonData.name);
+        this.userPokemons.splice(idToDelete, 1);
+        localStorage.setItem("userPokemons", this.userPokemons);
+      }
 
       // To pass the update userPokemons list to the parent component
-      this.$emit("addPokemon", this.userPokemons);
+      this.$emit("updatePokemon", this.userPokemons);
     },
   },
 };
@@ -43,7 +51,13 @@ export default {
       <input type="text" v-model="pokemonToSearch" />
       <button @click="searchPokemon">Find</button>
     </div>
-    <button @click="catchPokemon">Catch</button>
+    <button
+      v-if="userPokemons.includes(pokemonToSearch)"
+      @click="catchPokemon(false)"
+    >
+      Free
+    </button>
+    <button v-else @click="catchPokemon(true)">Catch</button>
   </div>
 </template>
 
