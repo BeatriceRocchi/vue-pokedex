@@ -17,12 +17,11 @@ export default {
     handlePokemonDetails(data) {
       this.pokemonData = data;
     },
+
+    updateUserPokemons(userPokemons) {
+      this.userPokemons = userPokemons;
+    },
   },
-  // computed: {
-  //   changeUserPokemons() {
-  //     return (this.userPokemons = localStorage.userPokemons);
-  //   },
-  // },
   mounted() {
     if (localStorage.userPokemons) {
       this.userPokemons = localStorage.userPokemons.split(",");
@@ -35,7 +34,10 @@ export default {
   <main id="pokedex">
     <!-- Left side: pokemon searchbar, pokemon catch/release and pokemon info -->
     <div>
-      <Search @sendPokemonDetails="handlePokemonDetails" />
+      <Search
+        @sendPokemonDetails="handlePokemonDetails"
+        @addPokemon="updateUserPokemons"
+      />
       <PokemonDetails :pokemonData="pokemonData" />
     </div>
     <!-- Right side: my pokemon list -->

@@ -26,8 +26,12 @@ export default {
       if (localStorage.userPokemons) {
         this.userPokemons = localStorage.userPokemons.split(",");
       }
+
       this.userPokemons.push(this.pokemonData.name);
       localStorage.setItem("userPokemons", this.userPokemons);
+
+      // To pass the update userPokemons list to the parent component
+      this.$emit("addPokemon", this.userPokemons);
     },
   },
 };
