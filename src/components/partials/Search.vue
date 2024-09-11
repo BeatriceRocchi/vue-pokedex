@@ -32,7 +32,7 @@ export default {
       <button @click="passPokemonToSearch">Find</button>
     </div>
 
-    <button v-if="isClicked" @click="catchPokemon()">
+    <button v-if="btnText !== ''" @click="catchPokemon()">
       {{ btnText }}
     </button>
   </div>

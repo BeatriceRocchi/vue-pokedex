@@ -79,7 +79,11 @@ export default {
       <h3>My pokemons</h3>
       <ul>
         <li v-for="(pokemon, id) in userPokemons" :key="id">
-          <a href="#" @click="searchPokemon(pokemon, true)">{{ pokemon }}</a>
+          <a
+            href="#"
+            @click="searchPokemon(pokemon, true), (pokemonToSearch = pokemon)"
+            >{{ pokemon }}</a
+          >
         </li>
       </ul>
     </div>
