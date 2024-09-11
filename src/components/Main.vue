@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import Search from "./partials/Search.vue";
 import PokemonDetails from "./partials/PokemonDetails.vue";
 
@@ -7,19 +8,50 @@ export default {
     return {
       pokemonData: {},
       userPokemons: [],
+      pokemonToSearch: "",
+      apiUrl: "https://pokeapi.co/api/v2/pokemon/",
+      btnText: "",
+      // isCatched: false,
     };
   },
   components: {
     Search,
     PokemonDetails,
   },
+
   methods: {
-    handlePokemonDetails(data) {
-      this.pokemonData = data;
+    searchPokemon(pokemon, isCatched) {
+      this.pokemonToSearch = pokemon;
+      axios
+        .get(this.apiUrl + this.pokemonToSearch)
+        .then((result) => {
+          this.pokemonData = result.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      if (isCatched || this.userPokemons.includes(this.pokemonToSearch)) {
+        this.btnText = "Free";
+      } else {
+        this.btnText = "Catch";
+      }
     },
 
-    updateUserPokemons(userPokemons) {
-      this.userPokemons = userPokemons;
+    catchPokemon() {
+      // To mantain the pokemon of a previous session in the localStorage
+      if (localStorage.userPokemons) {
+        this.userPokemons = localStorage.userPokemons.split(",");
+      }
+      if (this.btnText === "Catch") {
+        this.userPokemons.push(this.pokemonToSearch);
+        localStorage.setItem("userPokemons", this.userPokemons);
+        this.btnText = "Free";
+      } else {
+        const idToDelete = this.userPokemons.indexOf(this.pokemonToSearch);
+        this.userPokemons.splice(idToDelete, 1);
+        localStorage.setItem("userPokemons", this.userPokemons);
+      }
     },
   },
   mounted() {
@@ -35,17 +67,19 @@ export default {
     <!-- Left side: pokemon searchbar, pokemon catch/release and pokemon info -->
     <div>
       <Search
-        @sendPokemonDetails="handlePokemonDetails"
-        @updatePokemon="updateUserPokemons"
+        :btnText="btnText"
+        @passPokemonToSearch="searchPokemon"
+        @catchPokemon="catchPokemon"
       />
       <PokemonDetails :pokemonData="pokemonData" />
     </div>
+
     <!-- Right side: my pokemon list -->
     <div>
       <h3>My pokemons</h3>
       <ul>
         <li v-for="(pokemon, id) in userPokemons" :key="id">
-          {{ pokemon }}
+          <a href="#" @click="searchPokemon(pokemon, true)">{{ pokemon }}</a>
         </li>
       </ul>
     </div>
