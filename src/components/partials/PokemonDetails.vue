@@ -23,6 +23,16 @@ export default {
     <li>Height: {{ pokemonData.height }} ''</li>
     <li>Weight: {{ pokemonData.weight }} lbs</li>
   </ul>
+
+  <h4>Stats:</h4>
+  <ul>
+    <li class="stat-item" v-for="(statItem, id) in pokemonData.stats" :key="id">
+      <p>{{ statItem.stat.name }}</p>
+      <div class="progress-bar" :style="{ width: statItem.base_stat + 'px' }">
+        {{ statItem.base_stat }}
+      </div>
+    </li>
+  </ul>
 </template>
 
 <style lang="scss" scoped>
@@ -38,5 +48,18 @@ export default {
 
 ul {
   list-style: none;
+}
+
+.stat-item {
+  p {
+    display: inline-block;
+    width: 50%;
+    min-width: fit-content;
+  }
+
+  .progress-bar {
+    display: inline-block;
+    background-color: black;
+  }
 }
 </style>
