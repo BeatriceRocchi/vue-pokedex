@@ -33,13 +33,18 @@ export default {
       <div class="light yellow"></div>
       <div class="light green"></div>
     </div>
+
     <div id="search-box">
       <div>
-        <input type="text" v-model="pokemonToSearch" />
-        <button @click="passPokemonToSearch">Find</button>
+        <input class="input-custom" type="text" v-model="pokemonToSearch" />
+        <button class="btn" @click="passPokemonToSearch">Find</button>
       </div>
-
-      <button v-if="btnText !== ''" @click="catchPokemon()">
+      <button
+        class="btn action"
+        :class="btnText === 'Catch' ? 'catch' : 'free'"
+        v-if="btnText !== ''"
+        @click="catchPokemon()"
+      >
         {{ btnText }}
       </button>
     </div>
@@ -76,7 +81,7 @@ export default {
       }
 
       &.yellow {
-        background-color: #e0e759;
+        background-color: #e3e960;
       }
 
       &.green {
@@ -86,8 +91,14 @@ export default {
   }
 
   #search-box {
-    // display: flex;
-    // justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+
+    .btn.action {
+      align-self: center;
+      margin-top: 10px;
+      width: 100%;
+    }
   }
 }
 </style>
