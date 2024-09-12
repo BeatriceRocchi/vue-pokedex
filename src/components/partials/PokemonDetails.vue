@@ -69,6 +69,7 @@ export default {
 @import "../../assets/scss/partials/variables";
 .pokemon-details-container {
   width: 100% !important;
+  border-radius: 10px;
   min-height: calc(100% - 100px);
   background-color: darken($color-pokedex, 5%) !important;
 }
