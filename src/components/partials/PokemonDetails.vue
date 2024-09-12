@@ -70,7 +70,7 @@ export default {
   background-color: #e3e3e3;
   height: 220px;
   width: 60%;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 20px;
   border-radius: 10px;
   border-left: 8px solid darken(#e3e3e3, 30%);

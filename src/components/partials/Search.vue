@@ -57,6 +57,7 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100% !important;
+  height: 90px;
 
   #lights-box {
     display: flex;
