@@ -70,7 +70,7 @@ export default {
   background-color: #e3e3e3;
   height: 220px;
   width: 60%;
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 20px;
   border-radius: 10px;
   border-left: 8px solid darken(#e3e3e3, 30%);
@@ -98,19 +98,19 @@ export default {
 
 .details-box {
   margin: 0 10px;
-  padding: 20px;
+  padding: 10px;
   background-color: whitesmoke;
   border: 1px solid rgba(black, 0.3);
   border-radius: 6px;
 
   .stats-box {
-    margin-top: 20px;
+    margin-top: 10px;
 
     .stat-item {
       p {
         margin-left: 10px;
         display: inline-block;
-        width: 50%;
+        width: 40%;
         min-width: fit-content;
         margin-bottom: 5px;
       }

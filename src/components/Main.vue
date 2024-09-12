@@ -93,9 +93,10 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/scss/partials/variables";
 #pokedex {
-  margin: 30px auto;
-  width: 60%;
+  margin: 10px auto 20px;
+  width: 90%;
   min-height: calc(100vh - 60px - 180px);
+  max-width: 1200px;
   display: flex;
   border-radius: 30px;
   border-left: 15px solid darken($color-pokedex, 20%);
