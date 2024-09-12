@@ -42,5 +42,6 @@ export default {
 #search-box {
   display: flex;
   justify-content: space-between;
+  height: 80px;
 }
 </style>

@@ -65,7 +65,7 @@ export default {
 <template>
   <main id="pokedex">
     <!-- Left side: pokemon searchbar, pokemon catch/release and pokemon info -->
-    <div>
+    <div id="left-side">
       <Search
         :btnText="btnText"
         @passPokemonToSearch="searchPokemon"
@@ -75,7 +75,7 @@ export default {
     </div>
 
     <!-- Right side: my pokemon list -->
-    <div>
+    <div id="right-side">
       <h3>My pokemons</h3>
       <ul>
         <li v-for="(pokemon, id) in userPokemons" :key="id">
@@ -93,15 +93,31 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/scss/partials/variables";
 #pokedex {
-  background-color: $color-pokedex;
-  margin: 100px auto;
-  height: calc(100vh - 300px);
+  margin: 30px auto;
   width: 60%;
+  height: calc(100vh - 60px - 180px);
   display: flex;
+  border-radius: 30px;
+  border-left: 15px solid darken($color-pokedex, 20%);
+  border-bottom: 15px solid darken($color-pokedex, 20%);
 
   div {
+    background-color: $color-pokedex;
     width: 50%;
     padding: 10px;
+  }
+
+  #left-side {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: 8px solid darken($color-pokedex, 20%);
+  }
+
+  #right-side {
+    margin-top: 80px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 }
 </style>
