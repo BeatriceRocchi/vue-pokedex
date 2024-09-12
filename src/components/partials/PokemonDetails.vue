@@ -7,70 +7,78 @@ export default {
 </script>
 
 <template>
-  <!-- Upper part: pokemon image -->
-  <div class="img-container">
-    <div class="light-container">
-      <div class="light red"></div>
-      <div class="light red"></div>
+  <div class="pokemon-details-container">
+    <!-- Upper part: pokemon image -->
+    <div class="img-container">
+      <div class="light-container">
+        <div class="light red"></div>
+        <div class="light red"></div>
+      </div>
+      <div class="img-box">
+        <img
+          v-if="pokemonData.name"
+          :src="pokemonData.sprites.front_default"
+          :alt="pokemonData.name"
+        />
+      </div>
     </div>
-    <div class="img-box">
-      <img
-        v-if="pokemonData.name"
-        :src="pokemonData.sprites.front_default"
-        :alt="pokemonData.name"
-      />
-    </div>
-  </div>
 
-  <!-- Lower part: pokemon details -->
-  <div v-if="pokemonData.name" class="details-box">
-    <!-- Main pokemon features -->
-    <ul>
-      <li><span class="bold-text">Name</span>: {{ pokemonData.name }}</li>
-      <li>
-        <span class="bold-text">Type</span>:
-        {{ pokemonData.types[0].type.name }}
-      </li>
-      <li>
-        <span class="bold-text">Height</span>: {{ pokemonData.height }} ''
-      </li>
-      <li>
-        <span class="bold-text">Weight</span>: {{ pokemonData.weight }} lbs
-      </li>
-    </ul>
-
-    <!-- Statistics -->
-    <div class="stats-box">
-      <h4 class="bold-text">Stats:</h4>
+    <!-- Lower part: pokemon details -->
+    <div v-if="pokemonData.name" class="details-box">
+      <!-- Main pokemon features -->
       <ul>
-        <li
-          class="stat-item"
-          v-for="(statItem, id) in pokemonData.stats"
-          :key="id"
-        >
-          <p>{{ statItem.stat.name }}</p>
-          <div class="progress-bar">
-            <div
-              class="progress-bar-full"
-              :style="{ width: statItem.base_stat + 'px' }"
-            >
-              {{ statItem.base_stat }}
-            </div>
-          </div>
+        <li><span class="bold-text">Name</span>: {{ pokemonData.name }}</li>
+        <li>
+          <span class="bold-text">Type</span>:
+          {{ pokemonData.types[0].type.name }}
+        </li>
+        <li>
+          <span class="bold-text">Height</span>: {{ pokemonData.height }} ''
+        </li>
+        <li>
+          <span class="bold-text">Weight</span>: {{ pokemonData.weight }} lbs
         </li>
       </ul>
+
+      <!-- Statistics -->
+      <div class="stats-box">
+        <h4 class="bold-text">Stats:</h4>
+        <ul>
+          <li
+            class="stat-item"
+            v-for="(statItem, id) in pokemonData.stats"
+            :key="id"
+          >
+            <p>{{ statItem.stat.name }}</p>
+            <div class="progress-bar">
+              <div
+                class="progress-bar-full"
+                :style="{ width: statItem.base_stat + 'px' }"
+              >
+                {{ statItem.base_stat }}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import "../../assets/scss/partials/variables";
+.pokemon-details-container {
+  width: 100% !important;
+  min-height: calc(100% - 100px);
+  background-color: darken($color-pokedex, 5%) !important;
+}
+
 .img-container {
   clip-path: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
   background-color: #e3e3e3;
   height: 220px;
   width: 60%;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 20px;
   border-radius: 10px;
   border-left: 8px solid darken(#e3e3e3, 30%);
@@ -97,7 +105,6 @@ export default {
 }
 
 .details-box {
-  margin: 0 10px;
   padding: 10px;
   background-color: whitesmoke;
   border: 1px solid rgba(black, 0.3);
