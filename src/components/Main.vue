@@ -115,7 +115,7 @@ export default {
   }
 
   #right-side {
-    margin-top: 80px;
+    margin-top: 100px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
   }
