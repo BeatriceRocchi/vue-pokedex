@@ -7,3 +7,11 @@
 body {
   background-color: lighten($color-primary, 45%);
 }
+
+ul {
+  list-style: none;
+
+  li {
+    line-height: 1.2rem;
+  }
+}

@@ -45,6 +45,7 @@ export default {
         v-if="btnText !== ''"
         @click="catchPokemon()"
       >
+        <img src="../../assets/img/pokeball.png" alt="pokeball" />
         {{ btnText }}
       </button>
     </div>
@@ -59,35 +60,6 @@ export default {
 
   #lights-box {
     display: flex;
-
-    .light {
-      border: 1px solid rgba(black, 0.3);
-      box-shadow: inset -4px -4px rgba(black, 0.3);
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      margin-right: 10px;
-
-      &.big {
-        height: 70px;
-        width: 70px;
-        box-shadow: inset -6px -6px rgba(black, 0.3);
-        background-color: #13eaf7;
-        border: 5px solid white;
-      }
-
-      &.red {
-        background-color: #d80e1e;
-      }
-
-      &.yellow {
-        background-color: #e3e960;
-      }
-
-      &.green {
-        background-color: #a3f858;
-      }
-    }
   }
 
   #search-box {
@@ -95,9 +67,16 @@ export default {
     flex-direction: column;
 
     .btn.action {
-      align-self: center;
       margin-top: 10px;
-      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+      }
     }
   }
 }

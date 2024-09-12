@@ -95,7 +95,7 @@ export default {
 #pokedex {
   margin: 30px auto;
   width: 60%;
-  height: calc(100vh - 60px - 180px);
+  min-height: calc(100vh - 60px - 180px);
   display: flex;
   border-radius: 30px;
   border-left: 15px solid darken($color-pokedex, 20%);
