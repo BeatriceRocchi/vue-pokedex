@@ -8,12 +8,14 @@ export default {
 
 <template>
   <!-- Upper part: image -->
-  <div class="img-box">
-    <img
-      v-if="pokemonData.name"
-      :src="pokemonData.sprites.front_default"
-      :alt="pokemonData.name"
-    />
+  <div class="img-container">
+    <div class="img-box">
+      <img
+        v-if="pokemonData.name"
+        :src="pokemonData.sprites.front_default"
+        :alt="pokemonData.name"
+      />
+    </div>
   </div>
   <!-- Lower part: details -->
   <!-- TODO: Add stats and style -->
@@ -42,14 +44,26 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/scss/partials/variables";
-.img-box {
-  background-color: white;
-  width: 50%;
-  height: 150px;
-  margin: 30px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.img-container {
+  clip-path: polygon(0 0, 80% 0, 100% 20%, 100% 100%, 0 100%);
+  background-color: #e3e3e3;
+  height: 220px;
+  width: 60%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 8px solid darken(#e3e3e3, 30%);
+  border-bottom: 8px solid darken(#e3e3e3, 30%);
+
+  .img-box {
+    background-color: white;
+    margin-top: 30px;
+    height: 80%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 ul {
