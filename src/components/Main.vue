@@ -42,11 +42,21 @@ export default {
 
     changePokemonActive(isBefore) {
       if (isBefore) {
-        this.pokemonActive = this.userPokemons[this.idPokemonActive - 1];
-        this.idPokemonActive = this.idPokemonActive - 1;
+        if (this.idPokemonActive === 0) {
+          this.pokemonActive = this.userPokemons[this.userPokemons.length - 1];
+          this.idPokemonActive = this.userPokemons.length - 1;
+        } else {
+          this.pokemonActive = this.userPokemons[this.idPokemonActive - 1];
+          this.idPokemonActive = this.idPokemonActive - 1;
+        }
       } else {
-        this.pokemonActive = this.userPokemons[this.idPokemonActive + 1];
-        this.idPokemonActive = this.idPokemonActive + 1;
+        if (this.idPokemonActive === this.userPokemons.length - 1) {
+          this.pokemonActive = this.userPokemons[0];
+          this.idPokemonActive = 0;
+        } else {
+          this.pokemonActive = this.userPokemons[this.idPokemonActive + 1];
+          this.idPokemonActive = this.idPokemonActive + 1;
+        }
       }
       this.searchPokemon(this.pokemonActive, true);
     },
