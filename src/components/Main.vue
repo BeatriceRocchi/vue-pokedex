@@ -191,7 +191,8 @@ export default {
       .user-pokemons-screen {
         background-color: whitesmoke;
         border: 1px solid darken(#e3e3e3, 30%);
-        width: 80%;
+        width: 70%;
+        border-radius: 6px;
         height: 65%;
         margin: 10px auto;
         overflow-y: scroll;

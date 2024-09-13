@@ -16,8 +16,15 @@ export default {
       </div>
       <div class="img-box">
         <img
+          class="img-front"
           v-if="pokemonData.name"
           :src="pokemonData.sprites.front_default"
+          :alt="pokemonData.name"
+        />
+        <img
+          class="img-back"
+          v-if="pokemonData.name"
+          :src="pokemonData.sprites.back_default"
           :alt="pokemonData.name"
         />
       </div>
@@ -98,10 +105,41 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     img {
       height: 100%;
     }
+
+    .img-front {
+      animation: rotate-img 3s ease-in-out infinite;
+    }
+
+    .img-back {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotate-img-rev 3s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes rotate-img {
+  0% {
+    z-index: 999;
+  }
+  100% {
+    z-index: -999;
+  }
+}
+
+@keyframes rotate-img-rev {
+  0% {
+    z-index: -999;
+  }
+  100% {
+    z-index: 999;
   }
 }
 
