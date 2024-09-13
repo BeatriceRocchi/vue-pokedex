@@ -16,6 +16,7 @@ export default {
     passPokemonToSearch() {
       this.isClicked = true;
       this.$emit("passPokemonToSearch", this.pokemonToSearch, false);
+      this.pokemonToSearch = "";
     },
 
     catchPokemon() {

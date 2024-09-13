@@ -11,6 +11,8 @@ export default {
       pokemonToSearch: "",
       apiUrl: "https://pokeapi.co/api/v2/pokemon/",
       btnText: "",
+      pokemonActive: "",
+      idPokemonActive: -1,
       // isCatched: false,
     };
   },
@@ -38,6 +40,17 @@ export default {
       }
     },
 
+    changePokemonActive(isBefore) {
+      if (isBefore) {
+        this.pokemonActive = this.userPokemons[this.idPokemonActive - 1];
+        this.idPokemonActive = this.idPokemonActive - 1;
+      } else {
+        this.pokemonActive = this.userPokemons[this.idPokemonActive + 1];
+        this.idPokemonActive = this.idPokemonActive + 1;
+      }
+      this.searchPokemon(this.pokemonActive, true);
+    },
+
     catchPokemon() {
       // To mantain the pokemon of a previous session in the localStorage
       if (localStorage.userPokemons) {
@@ -51,6 +64,7 @@ export default {
         const idToDelete = this.userPokemons.indexOf(this.pokemonToSearch);
         this.userPokemons.splice(idToDelete, 1);
         localStorage.setItem("userPokemons", this.userPokemons);
+        this.btnText = "Catch";
       }
     },
   },
@@ -82,12 +96,15 @@ export default {
           <ul>
             <li
               class="pokemon-list-el"
+              :class="pokemonActive === pokemon ? 'active' : ''"
               v-for="(pokemon, id) in userPokemons"
               :key="id"
             >
               <span
                 @click="
-                  searchPokemon(pokemon, true), (pokemonToSearch = pokemon)
+                  searchPokemon(pokemon, true),
+                    (pokemonActive = userPokemons[id]),
+                    (idPokemonActive = id)
                 "
               >
                 {{ pokemon }}
@@ -99,7 +116,9 @@ export default {
         <!-- Cross button with arrows -->
         <div class="grid-container">
           <div class="grid-item"></div>
-          <div class="grid-item btn"><i class="fa-solid fa-caret-up"></i></div>
+          <div class="grid-item btn" @click="changePokemonActive(true)">
+            <i class="fa-solid fa-caret-up"></i>
+          </div>
           <div class="grid-item"></div>
           <div class="grid-item btn">
             <i class="fa-solid fa-caret-left"></i>
@@ -110,7 +129,10 @@ export default {
           </div>
           <div class="grid-item"></div>
           <div class="grid-item btn">
-            <i class="fa-solid fa-caret-down"></i>
+            <i
+              class="fa-solid fa-caret-down"
+              @click="changePokemonActive(false)"
+            ></i>
           </div>
           <div class="grid-item"></div>
         </div>
@@ -170,6 +192,7 @@ export default {
           span {
             padding: 0 10px;
           }
+
           &:hover {
             background-color: darken(#e3e3e3, 30%);
             cursor: pointer;
