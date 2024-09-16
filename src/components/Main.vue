@@ -13,7 +13,6 @@ export default {
       btnText: "",
       pokemonActive: "",
       idPokemonActive: -1,
-      // isCatched: false,
     };
   },
   components: {
@@ -22,7 +21,7 @@ export default {
   },
 
   methods: {
-    searchPokemon(pokemon, isCatched) {
+    searchPokemon(pokemon, isCaught) {
       this.pokemonToSearch = pokemon;
       axios
         .get(this.apiUrl + this.pokemonToSearch)
@@ -33,7 +32,7 @@ export default {
           console.log(error);
         });
 
-      if (isCatched || this.userPokemons.includes(this.pokemonToSearch)) {
+      if (isCaught || this.userPokemons.includes(this.pokemonToSearch)) {
         this.btnText = "Free";
       } else {
         this.btnText = "Catch";
@@ -193,7 +192,7 @@ export default {
         border: 1px solid darken(#e3e3e3, 30%);
         width: 70%;
         border-radius: 6px;
-        height: 65%;
+        height: 365px;
         margin: 10px auto;
         overflow-y: scroll;
 

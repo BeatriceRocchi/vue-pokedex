@@ -1,41 +1,39 @@
 # Vue Pokedex
 
-Sviluppare un Pokedex per poter riconoscere e catturare tutti i Pokemon presenti sul web! Creare quindi una web app con Vue che permetta di cercare Pokemon attraverso le API di PokeAPI e visualizzare i dettagli del Pokemon trovato. Quando viene trovato un Pokemon che ci ispira particolarmente, aggiungere la possibilità di catturarlo e salvarlo nel Pokedex. Occorre inoltre fare in modo che non scappino al refresh del browser! Per rendere il Pokedex completo occorre gestire i Pokemon dando la possibilità di salvarli o liberarli.
+Web app that allows to search for a Pokemon through the PokeAPI, to view the details of the Pokemon found and to catch it in your own Pokedex.
 
-### Milestone
+## Istallation
 
-**Milestone 1**
+In order to access the code, go to my GitHub at the following link: https://github.com/BeatriceRocchi/vue-pokedex.
+Now clone the repository, open it in your IDE and install all the dependencies and run by running the development server:
 
-Creiamo un componente per la ricerca: avremo bisogno di un campo di input in cui scrivere il nome del Pokemon e un pulsante per chiamare l’API. Inizialmente proviamo a vedere se i risultati sono corretti tramite un console.log (o nella tab Rete degli strumenti di chrome).
+```bash
+npm install
+npm run dev
+```
 
-**Milestone 2**
+To have more information on the PokéApi, read the official documentation at the following link: https://pokeapi.co/docs/v2.
 
-Una volta che abbiamo i dati del nostro Pokemon, creiamo il componente per visualizzare i dettagli che arrivano tramite l’API. È sufficiente mostrare i dati principali, ad una visualizzazione più complessa ci penseremo più avanti.
+## Description
 
-**Milestone 3**
+![Pokedex](src/assets/img/Pokedex.gif)
 
-Aggiungere la possibilità tramite un pulsante di salvare il Pokemon trovato nel nostro Pokedex, mostrando la lista dei Pokemon salvati.
+The layout of the web app is inspired by the pokédex of the original Pokémon cartoon. The layout is composed of two main components:
 
-**Milestone 4**
+1. **Pokémon search and information**
 
-Diamo la possibilità di cancellare dalla lista di Pokemon salvati e di poterne visualizzare il dettaglio nel componente dedicato cliccandoci sopra.
+   The left part of the pokédex has an upper section in which you can type the name of the pokémon you want to search and get info about. After the click on the 'find' button, all the information about the pokemon are collected through an API call to PokeAPI and displayed in the lower section. In details, for each pokémon there are the following data:
 
-**Milestone 5**
+   - animated images of the pokémon
+   - name
+   - type
+   - height
+   - weight
+   - stats about certain aspects of battles. In particular, for each aspect there is the value of the base stat, which grows as they gain levels and can be altered momentarily by effects in battles
 
-Per completare il nostro pokedex, gestiamo la persistenza dei Pokemon salvati attraverso il local storage, da manipolare sia in fase di aggiunta che in fase di cancellazione di un Pokemon dalla lista.
+   After the search of a pokémon, a green 'catch' button with a pokéball will appears under the searchbar and the 'find' button. If the pokémon is already caught and it is in the pokédex, the button has a different style: yellow and with the text 'free'.
 
-**Milestone 6**
+2. **My pokémon list**
+   The right part of the pokédex contains the list of all pokémon that have been caught. By clicking on a pokémon of the list, its data are displayed in the section on the left. The up and down arrows in the button below also allow to easily move between the pokémons list.
 
-Dall’API ci arriveranno le varie statistiche del Pokemon, proviamo a far visualizzare i valori delle varie skill sotto forma di progress bar.
-
-**Milestone 7**
-
-Aggiungiamo una veste grafica ai vari componenti del nostro Pokedex. Nell’anteprima avete un riferimento, ma potete lasciare spazio alla vostra creatività!
-
-**Bonus 1**
-
-Nel nostro componente di ricerca potremmo aver implementato un emit e una props in ingresso. Sfruttare la documentazione di Vue per simulare il v-model su un componente custom (del tipo `<SearchCustom v-model=”search” >`)
-
-**Bonus 2**
-
-L’API ci restituisce diverse immagini del Pokemon (fronte e retro). Proviamo a sfruttarle entrambe nel componente di dettaglio del Pokemon, magari implementando un’animazione per alternarle.
+   Thanks to a functionality implemented through the LocalStorage, the pokémon list is maintained even after the web page is closed.
